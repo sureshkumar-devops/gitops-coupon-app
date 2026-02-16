@@ -21,7 +21,7 @@ jobs:
 
       - name: Extract version
         id: vars
-        run: echo "TAG=v$(date +%s)" >> $GITHUB_ENV
+        run: echo "TAG=v$(SHORT_SHA::7)" >> $GITHUB_ENV
 
       - name: Build and Push
         run: |
