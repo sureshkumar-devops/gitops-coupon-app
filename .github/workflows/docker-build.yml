@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - master
+env:
+     SHORT_SHA: ${GITHUB_SHA::7}   
 
 jobs:
   build:
@@ -12,6 +14,7 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+        
 
       - name: Login to DockerHub
         uses: docker/login-action@v3
@@ -19,11 +22,23 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Extract version
-        id: vars
-        run: echo "TAG=v$(SHORT_SHA::7)" >> $GITHUB_ENV
+      # - name: Extract version
+      #   id: vars
+      #   run: echo "TAG=v$(SHORT_SHA::7)" >> $GITHUB_ENV
 
-      - name: Build and Push
-        run: |
-          docker build -t lehardocker/gitops-coupon-app:${{ env.TAG }} ./app
-          docker push lehardocker/gitops-coupon-app:${{ env.TAG }}
+      - name: Set short SHA
+        id: vars
+        run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV  
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./app
+          push: true
+          tags: lehardocker/gitops-coupon-app:${{ env.SHORT_SHA }}  
+
+      # - name: Build and Push
+      #   run: |
+      #     docker build -t lehardocker/pyapp:${GITHUB_SHA::7} ."
+      #     docker build -t lehardocker/gitops-coupon-app:${{ env.TAG }} ./app
+      #     docker push lehardocker/gitops-coupon-app:${{ env.TAG }}
