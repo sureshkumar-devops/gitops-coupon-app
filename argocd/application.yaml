@@ -12,7 +12,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: git@github.com:sureshkumar-devops/gitops-coupon-app.git
+    repoURL: https://github.com/sureshkumar-devops/gitops-coupon-app.git
     targetRevision: master
     path: k8s
   destination:
