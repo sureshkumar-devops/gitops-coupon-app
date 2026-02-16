@@ -3,7 +3,9 @@ kind: Application
 metadata:
   name: sample-app
   namespace: argocd
-  annotations:
+  labels:
+    argocd-image-updater.argoproj.io/enabled: "true"
+  annotations:    
     argocd-image-updater.argoproj.io/image-list: app=lehardocker/gitops-coupon-app
     argocd-image-updater.argoproj.io/app.update-strategy: newest-build
     argocd-image-updater.argoproj.io/app.allow-tags: regexp:^[a-f0-9]{7}$
@@ -17,6 +19,7 @@ spec:
     repoURL: https://github.com/sureshkumar-devops/gitops-coupon-app.git
     targetRevision: master
     path: k8s
+    kustomize: {}
   destination:
     server: https://kubernetes.default.svc
     namespace: default
