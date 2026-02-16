@@ -1,0 +1,27 @@
+apiVersion: argocd-image-updater.argoproj.io/v1alpha1
+kind: ImageUpdater
+metadata:
+  name: sample-app-updater
+  namespace: argocd
+spec:
+  namespace: argocd
+
+  applicationRefs:
+    - namePattern: "sample-app"
+
+  images:
+    - alias: "app"
+      imageName: "lehardocker/gitops-coupon-app:e206434"
+      commonUpdateSettings:
+         updateStrategy: "newest-build"
+         allowTags: regexp:^[a-f0-9]{7}$
+         ignoreTags: ["latest", "dev"]
+         pullSecret: "secret:argocd/repo-git-creds#sureshkumar-devops"
+         platforms: ["linux/amd64", "linux/arm64"]
+
+  writeBackConfig:
+    method: "git"
+    gitConfig:
+      repository: "git@github.com:sureshkumar-devops/gitops-coupon-app.git"
+      branch: "master"
+      writeBackTarget: "helmvalues:./values.yaml"
