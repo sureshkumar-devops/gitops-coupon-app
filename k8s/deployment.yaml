@@ -7,7 +7,8 @@ metadata:
   annotations:
     argocd-image-updater.argoproj.io/image-list: app=lehardocker/gitops-coupon-app
     argocd-image-updater.argoproj.io/app.update-strategy: newest-build
-    #argocd-image-updater.argoproj.io/app.allow-tags: regexp:^v.*
+    argocd-image-updater.argoproj.io/app.allow-tags: regexp:^[a-f0-9]{7}$
+    argocd-image-updater.argoproj.io/write-back-method: git
 spec:
   replicas: 1
   selector:
@@ -20,6 +21,6 @@ spec:
     spec:
       containers:
         - name: app
-          image: lehardocker/gitops-coupon-app:v1771246033
+          image: lehardocker/gitops-coupon-app:e206434
           ports:
             - containerPort: 80
