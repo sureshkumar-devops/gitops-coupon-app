@@ -1,0 +1,3 @@
+ argocd/dockerhub-creds.yml
+ argocd/ghcr-creds.yml
+ argocd/git-creds.yml
