@@ -14,12 +14,7 @@ spec:
     - namePattern: "*"
       images:
           - alias: "app"
-            imageName: "lehardocker/gitops-coupon-app:latest"
+            imageName: "lehardocker/gitops-coupon-app"
             commonUpdateSettings:
-                updateStrategy: "digest"
-                #allowTags: "regexp:^[a-f0-9]{7}$"
-                #pullSecret: "secret:argocd/repo-git-creds#sureshkumar-devops"
-           
-
-
-      
+                updateStrategy: "latest"
+                allowTags: "regexp:^[0-9a-f]{7}$"
