@@ -6,9 +6,9 @@ metadata:
 spec:
   namespace: argocd
   writeBackConfig:
-    method: "git"
+    method: "git:secret:argocd/git-creds"
     gitConfig:
-      repository: "git@github.com:sureshkumar-devops/gitops-coupon-app.git"
+      repository: "https://github.com/sureshkumar-devops/gitops-coupon-app.git"
       branch: "master"
   applicationRefs:
     - namePattern: "*"
