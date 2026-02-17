@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: lehardocker/gitops-coupon-app:e206434
+          image: lehardocker/gitops-coupon-app:b710dd9
           imagePullPolicy: Always
           ports:
             - containerPort: 80
