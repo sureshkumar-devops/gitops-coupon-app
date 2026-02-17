@@ -1,0 +1,3 @@
+kustomize:
+  images:
+  - lehardocker/gitops-coupon-app:b710dd9
