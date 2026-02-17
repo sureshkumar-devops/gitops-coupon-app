@@ -1,3 +1,3 @@
 kustomize:
   images:
-  - lehardocker/gitops-coupon-app:c0cd541
+  - lehardocker/gitops-coupon-app:30663a4
