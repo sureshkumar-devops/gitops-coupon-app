@@ -14,7 +14,7 @@ spec:
     - namePattern: "*"
       images:
           - alias: "app"
-            imageName: "lehardocker/gitops-coupon-app"
+            imageName: "lehardocker/gitops-coupon-app:latest"
             commonUpdateSettings:
                 updateStrategy: "digest"
                 #allowTags: "regexp:^[a-f0-9]{7}$"
