@@ -15,9 +15,11 @@ spec:
       labels:
         app: sample-app
     spec:
+      imagePullSecrets:
+        - name: dockerhub-creds
       containers:
         - name: app
-          image: lehardocker/gitops-coupon-app
+          image: "lehardocker/gitops-coupon-app"
           imagePullPolicy: Always
           ports:
             - containerPort: 80
