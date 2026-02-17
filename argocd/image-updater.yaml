@@ -16,5 +16,5 @@ spec:
           - alias: "app"
             imageName: "lehardocker/gitops-coupon-app"
             commonUpdateSettings:
-                updateStrategy: "latest"
+                updateStrategy: "newest-build"
                 allowTags: "regexp:^[0-9a-f]{7}$"
